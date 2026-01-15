@@ -14,26 +14,62 @@
 //              int[i] = temp
 
 
-int[] numbers = {9,2,5,3,7,4,3,4,5,7};
-bool inOrderFlag = false;
+using Stopwatch = System.Diagnostics.Stopwatch;
+Stopwatch sw = new Stopwatch();
 
-while(inOrderFlag == false)
+int[] numbers1 = { 9, 2, 5, 3, 7, 4, 3, 4, 5, 7 };
+int[] numbers2 = {5, 40, 17, 13, 12, 9, 2, 36, 19, 34, 31, 45, 14, 32, 28, 23, 43, 48, 39, 41, 47, 46, 37, 1};
+int[] numbers3 = {50, 22, 20, 40, 29, 44, 32, 36, 24, 4, 48, 16, 12, 6, 49, 8, 39, 2, 45, 10, 13, 46, 25, 42, 41, 30, 17, 19, 31, 21,};
+int[] numbers4 = {46, 18, 9, 23, 28, 34, 25, 50, 14, 37, 43, 47, 36, 20, 12, 33, 24, 1, 4, 38, 15, 41, 27, 30, 17, 3, 29, 8, 5, 45, 40, 19, 10, 13, 44, 35, 7 ,48 ,6 ,42 ,39 ,16 ,2 ,11 ,31 ,49 ,32 ,22 ,21 ,26};
+
+sw = Stopwatch.StartNew();
+Sort(numbers1);
+sw.Stop();
+Console.WriteLine("");
+Console.WriteLine($"Time in ms: {sw.ElapsedMilliseconds}");
+
+sw = Stopwatch.StartNew();
+Sort(numbers2);
+sw.Stop();
+Console.WriteLine("");
+Console.WriteLine($"Time in ms: {sw.ElapsedMilliseconds}");
+
+sw = Stopwatch.StartNew();
+Sort(numbers3);
+sw.Stop();
+Console.WriteLine("");
+Console.WriteLine($"Time in ms: {sw.ElapsedMilliseconds}");
+
+sw = Stopwatch.StartNew();
+Sort(numbers4);
+sw.Stop();
+Console.WriteLine("");
+Console.WriteLine($"Time in ms: {sw.ElapsedMilliseconds}");
+
+void Sort(int[] numbers)
 {
-    inOrderFlag = true;
-    for (int i = 0; i < numbers.Count(); i++)
+
+    bool inOrderFlag = false;
+
+    while (inOrderFlag == false)
     {
-        if (numbers[i] > numbers[i + 1])
+        inOrderFlag = true;
+        for (int i = 0; i < numbers.Count() - 1; i++)
         {
-            inOrderFlag = false;
-            int temp = numbers[i + 1];
-            numbers[i+1] = numbers[i];
-            numbers[i] = temp;
+            if (numbers[i] > numbers[i + 1])
+            {
+                inOrderFlag = false;
+                int temp = numbers[i + 1];
+                numbers[i + 1] = numbers[i];
+                numbers[i] = temp;
+            }
         }
     }
-}
 
-Console.WriteLine($"Your numbers are ordered");
-foreach (int eachNum in numbers)
-{
-    Console.Write($"{eachNum}, ");
+    Console.WriteLine($"Your numbers are ordered");
+    foreach (int eachNum in numbers)
+    {
+        Console.Write($"{eachNum}, ");
+        
+    }
 }
